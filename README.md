@@ -2,10 +2,7 @@
 ## Elevator Pitch
 
 ## Video Demo
-<details>
-  <summary>Demo</summary>
-  <video src="https://media.graphassets.com/s9KxU1npTjKeoMrytjoi"></video>
-</details>
+[DEMO](https://media.graphassets.com/s9KxU1npTjKeoMrytjoi)
 
 ## Project Story
 
