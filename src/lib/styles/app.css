@@ -187,6 +187,7 @@ button.active {
     height: 40px;
     border-radius: 4px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .album-cover img {
@@ -302,4 +303,13 @@ button.active {
     100% {
         background-position: -200% 0;
     }
+}
+
+.upcoming-song .song-title, .upcoming-song .song-artist {
+    text-wrap: nowrap;
+    width: 290px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
 }
