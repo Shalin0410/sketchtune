@@ -12,11 +12,13 @@ SketchTune is an innovative application that curates a personalized music playli
 ### Tech Stack
 Frontend Software Framework: Svelte
 - To create our digital canvas and play the recommended playlist from Spotify
+  
 LLM Model: Anthropic - Claude AI
 - To convert images to recommended Spotify playlist
+  
 Spotify Search API
-- Based on the recommended playlist it would retrieve the songs from Spotify
-
+- Based on the recommended playlist, it would retrieve the songs from Spotify
+  
 
 ### Challenges you ran into
 
