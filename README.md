@@ -30,9 +30,15 @@ Spotify Search API
   
 
 ### Challenges you ran into
-To have a seamless experience, the web UI, Claude AI, and Spotify search API had to be integrated in such a way that it provided the artist with a real-time experience. Without hindering the artist's work and with their drawing capability, we had to asynchronously process their artwork with Claude AI and retrieve the Spotify playlist. 
+To ensure a seamless experience, the web UI, Claude AI, and Spotify Search API needed to be integrated in a way that provided artists with real-time feedback. We aimed to facilitate the artists' work without interruption, allowing them to continue drawing while we asynchronously processed their artwork with Claude AI and retrieved the corresponding Spotify playlist.
+
+We faced several challenges integrating Spotify's Web SDK for dynamic music playback while artists worked on their creations. The SDK required users to have a Spotify Premium subscription, which limited accessibility for many potential users. Additionally, the Spotify SDK was optimized for React, while our project, SketchTune, was built using the Svelte framework, leading to compatibility issues.
+To address these constraints, we decided to utilize the Spotify Search API instead. By retrieving song preview URLs directly from the API and embedding them, we enabled music playback without the need for a Premium account or altering the project's framework. This solution preserved the intended functionality while enhancing accessibility, creating a smooth and adaptable experience for all users.
+
+To create an accurate Spotify playlist using Claude AI, it was essential to find the correct documentation. Due to several conflicting sources, identifying the right documentation ensured that the web UI could seamlessly integrate with the AI model and successfully retrieve the playlist from Claude AI.
 
 ### Accomplishments that you’re proud of
+With the right prompt engineering we were able to provide a playlist 
 
 ### What you learned
 
