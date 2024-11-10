@@ -1,10 +1,11 @@
 # SketchTune - Feel Your Creation
 ![Logo](https://github.com/noahpin/sketchtune/blob/main/assets/logo.png?raw=true)
+[Live Demo](https://sketchtune.vercel.app/)
 
 ## Elevator Pitch
 
 ## Video Demo
-[DEMO](https://media.graphassets.com/s9KxU1npTjKeoMrytjoi)
+[DEMO VIDEO](https://media.graphassets.com/s9KxU1npTjKeoMrytjoi)
 
 ## Project Story
 
