@@ -114,7 +114,7 @@
 		}, 300000); // wait five minutes before generating more
 	}
 	$: {
-		if(songQueue.length < 3) {
+		if(songQueue.length == 2) {
 			getAnthropicRecommendations().then((queue) => {
 				queue.forEach((q) => {
 					songQueue.push(q);

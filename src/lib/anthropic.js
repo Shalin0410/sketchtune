@@ -28,30 +28,15 @@ export async function imageAnthropic(imagedata) {
 					},
 					{
 						type: "text",
-						text: "Describe the mood of the drawing. If there is text in the drawing, consider the language it is written in and if necessary translate it to english for analysis.",
+						text: `generate music suggestions based on this image: Describe the mood, setting, and cultural context, and suggest music styles, artists, or songs from various languages that would enhance the scene. Consider genres and artists from popular global music scenes, including American, Latin, European, Asian, and African influences, with options in languages like English, Spanish, French, Hindi, Korean, Arabic, and more. Base your suggestions on the image's emotional tone, colors, and visual themes, aligning music choices with the ambiance and cultural diversity reflected. List 10 songs in JSON format, with a key "songs" which contains an array, each array element matches the format of a key "artist" which contains the artists name, and the key "title" which contains the songs title. Do not add any other text to your response, only the JSON format specified. If you would like, you can place exactly why you picked these songs in a new value on the JSON object titled "reasoning", but the overall structure of your response should be purely JSON.`,
 					},
 				],
 			},
 		],
 	});
-    console.log("Analysis complete, beginning song generation")
-    anthropicStatus.set("Analysis complete, beginning song generation")
-    console.log(message['content'][0]['text'])
-	let song = await c_anthropic.messages.create({
-		model: "claude-3-5-sonnet-20241022",
-		max_tokens: 1024,
-		messages: [
-			{
-				role: "user",
-				content:
-					'List 10 songs that match this vibe in JSON format, with a key "songs" which contains an array, each array element matches the format of a key "artist" which contains the artists name, and the key "title" which contains the songs title:' +
-					message["content"][0]["text"],
-			},
-		],
-	});
     anthropicStatus.set("Songs generated, obtaining song data from Spotify")
-	console.log(song["content"][0]["text"]);
-    let json = JSON.parse(song["content"][0]["text"])
+	console.log(message["content"][0]["text"]);
+    let json = JSON.parse(message["content"][0]["text"])
 	console.log(json);
     return json;
 }
