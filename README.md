@@ -6,7 +6,8 @@
 Artists often express their feelings through their craft. Using music to amplify the emotions that fuel their art allows artists to fully immerse into their creations.
 
 ## Video Demo
-[DEMO VIDEO](https://media.graphassets.com/s9KxU1npTjKeoMrytjoi)
+[SketchTune App Demo](https://youtube.com/watch?v=Rd0SeUE460M)
+[SketchTune Promo Video](https://www.youtube.com/watch?v=VHhIngk8Rn0)
 
 ## SketchTune
 https://sketchtune.vercel.app/
