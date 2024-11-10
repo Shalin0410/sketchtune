@@ -1,6 +1,6 @@
 import { writable, get } from "svelte/store";
-const clientId = "3e261e446ac04ff7b3c06e6de081f04c";
-const clientSecret = "419819b01043489b9dba972efb4898c2";
+// const clientId = "3e261e446ac04ff7b3c06e6de081f04c";
+// const clientSecret = "419819b01043489b9dba972efb4898c2";
 // Get Spotify access token
 export async function getAccessToken() {
 	const response = await fetch("https://accounts.spotify.com/api/token", {
