@@ -1,7 +1,7 @@
 # SketchTune
-# Elevator Putch
+## Elevator Pitch
 Fill your creation
-# Video Demo
+## Video Demo
 
 ## Project Story
 
