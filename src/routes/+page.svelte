@@ -7,7 +7,7 @@
 		IconTrash,
 		IconLoader2,
 	} from "@tabler/icons-svelte";
-    import { fade } from "svelte/transition";
+	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { imageAnthropic, anthropicStatus } from "$lib/anthropic";
 
@@ -82,6 +82,22 @@
 			songQueue = [...songQueue];
 			getAnthropicLoop();
 		}, 300000); // wait five minutes before generating more
+	}
+
+	function nextSong() {
+        if(songQueue.length == 0) {
+            clearQueue();
+            return;
+        }
+		activeSong = songQueue.shift();
+		songQueue = [...songQueue];
+	}
+
+	function clearQueue() {
+		songsRecommended = false;
+		startedFirstRecommendation = false;
+		getAnthropicFirstTime();
+		startedFirstRecommendation = true;
 	}
 
 	function processPoint(x, y) {
@@ -163,11 +179,11 @@
 <div class="canvas-toolbar">
 	<button
 		class={tool == "pen" ? "active" : ""}
-        on:pointerup={() => chooseTool("pen")}><IconPencil /></button
+		on:pointerup={() => chooseTool("pen")}><IconPencil /></button
 	>
 	<button
 		class={tool == "eraser" ? "active" : ""}
-        on:pointerup={() => chooseTool("eraser")}><IconEraser /></button
+		on:pointerup={() => chooseTool("eraser")}><IconEraser /></button
 	>
 	<button
 		aria-label={""}
@@ -244,7 +260,10 @@
 </div>
 
 <div class="queue-ui">
-	Currently Playing:
+	<div class="flex-hor">
+		<div>Currently Playing:</div>
+		<div class="clickable" on:pointerup={nextSong}>Skip Song</div>
+	</div>
 	{#if songsRecommended}
 		<div class="active-song">
 			<div class="top">
@@ -264,22 +283,31 @@
 		<div class="active-song">
 			<div class="top">
 				<div class="album-cover"></div>
-				<div class="song-details">
-					<div class="song-title">....</div>
-					<div class="song-artist">....</div>
+				<div class="song-details" style:width={"100px"}>
+					<div class="song-title gradient-loader">
+                        <div class="progress-bar">
+                        </div></div>
+					<div class="song-artist gradient-loader">
+                        <div class="progress-bar">
+                        </div></div>
 				</div>
 			</div>
-			<div class="progress-bar">
-				<div class="progress-inner" style:width={"0%"}></div>
+			<div class="progress-bar gradient-loader">
 			</div>
 		</div>
 	{/if}
-	Queue:
+	<div class="flex-hor">
+		<div>Queue:</div>
+		<div class="clickable" on:pointerup={clearQueue}>Clear Queue</div>
+	</div>
 	<div class="upcoming-songs">
 		{#if drawnAtAll}
 			{#if songsRecommended}
 				{#each songQueue as song, i}
-					<div class="upcoming-song" transition:fade|global={{duration: 300, delay: i * 150}}>
+					<div
+						class="upcoming-song"
+						in:fade|global={{ duration: 300, delay: i * 150 }}
+					>
 						<div class="top">
 							<div class="album-cover">
 								<img src={song.cover} alt="" />
