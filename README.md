@@ -30,6 +30,7 @@ Spotify Search API
   
 
 ### Challenges you ran into
+To have a seamless experience, the web UI, Claude AI, and Spotify search API had to be integrated in such a way that it provided the artist with a real-time experience. Without hindering the artist's work and with their drawing capability, we had to asynchronously process their artwork with Claude AI and retrieve the Spotify playlist. 
 
 ### Accomplishments that you’re proud of
 
