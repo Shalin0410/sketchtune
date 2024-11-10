@@ -28,7 +28,7 @@ export async function imageAnthropic(imagedata) {
 					},
 					{
 						type: "text",
-						text: "Describe the mood of the drawing.",
+						text: "Describe the mood of the drawing. If there is text in the drawing, consider the language it is written in and if necessary translate it to english for analysis.",
 					},
 				],
 			},
