@@ -163,56 +163,56 @@
 <div class="canvas-toolbar">
 	<button
 		class={tool == "pen" ? "active" : ""}
-		on:click={() => chooseTool("pen")}><IconPencil /></button
+        on:pointerup={() => chooseTool("pen")}><IconPencil /></button
 	>
 	<button
 		class={tool == "eraser" ? "active" : ""}
-		on:click={() => chooseTool("eraser")}><IconEraser /></button
+        on:pointerup={() => chooseTool("eraser")}><IconEraser /></button
 	>
 	<button
 		aria-label={""}
 		class={"red" + (curColor == "red" ? " active" : "")}
-		on:click={() => setColor("red")}
+		on:pointerup={() => setColor("red")}
 	></button>
 	<button
 		aria-label={""}
 		class={"orange" + (curColor == "orange" ? " active" : "")}
-		on:click={() => setColor("orange")}
+		on:pointerup={() => setColor("orange")}
 	></button>
 	<button
 		aria-label={""}
 		class={"yellow" + (curColor == "yellow" ? " active" : "")}
-		on:click={() => setColor("yellow")}
+		on:pointerup={() => setColor("yellow")}
 	></button>
 	<button
 		aria-label={""}
 		class={"green" + (curColor == "green" ? " active" : "")}
-		on:click={() => setColor("green")}
+		on:pointerup={() => setColor("green")}
 	></button>
 	<button
 		aria-label={""}
 		class={"blue" + (curColor == "blue" ? " active" : "")}
-		on:click={() => setColor("blue")}
+		on:pointerup={() => setColor("blue")}
 	></button>
 	<button
 		aria-label={""}
 		class={"purple" + (curColor == "purple" ? " active" : "")}
-		on:click={() => setColor("purple")}
+		on:pointerup={() => setColor("purple")}
 	></button>
 	<button
 		aria-label={""}
 		class={"pink" + (curColor == "pink" ? " active" : "")}
-		on:click={() => setColor("pink")}
+		on:pointerup={() => setColor("pink")}
 	></button>
 	<button
 		aria-label={""}
 		class={"black" + (curColor == "black" ? " active" : "")}
-		on:click={() => setColor("black")}
+		on:pointerup={() => setColor("black")}
 	></button>
 	<button
 		aria-label={""}
 		class={"white"}
-		on:click={() => ctx.clearRect(0, 0, size, size)}
+		on:pointerup={() => ctx.clearRect(0, 0, size, size)}
 		><IconTrash></IconTrash></button
 	>
 </div>
@@ -220,25 +220,25 @@
 	<button
 		aria-label={""}
 		class={drawingSize == 20 ? " active" : ""}
-		on:click={() => (drawingSize = 20)}
+		on:pointerup={() => (drawingSize = 20)}
 		><IconCircleFilled size={24}></IconCircleFilled></button
 	>
 	<button
 		aria-label={""}
 		class={drawingSize == 10 ? " active" : ""}
-		on:click={() => (drawingSize = 10)}
+		on:pointerup={() => (drawingSize = 10)}
 		><IconCircleFilled size={16}></IconCircleFilled></button
 	>
 	<button
 		aria-label={""}
 		class={drawingSize == 5 ? " active" : ""}
-		on:click={() => (drawingSize = 5)}
+		on:pointerup={() => (drawingSize = 5)}
 		><IconCircleFilled size={10}></IconCircleFilled></button
 	>
 	<button
 		aria-label={""}
 		class={drawingSize == 2 ? " active" : ""}
-		on:click={() => (drawingSize = 2)}
+		on:pointerup={() => (drawingSize = 2)}
 		><IconCircleFilled size={6}></IconCircleFilled></button
 	>
 </div>
