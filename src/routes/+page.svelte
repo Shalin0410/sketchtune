@@ -7,13 +7,15 @@
 		IconTrash,
 		IconLoader2,
 	} from "@tabler/icons-svelte";
+	import { tweened } from "svelte/motion";
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
 	import { imageAnthropic, anthropicStatus } from "$lib/anthropic";
+	import { getTrackData, getAccessToken } from "$lib/spotify";
 
-	import { WebPlayback } from "svelte-spotify-web-playback";
-	const client_id = "3e261e446ac04ff7b3c06e6de081f04c";
+	let progressBarStore = tweened(0);
 
+	let accessToken = "";
 	let canvas;
 	let ctx;
 	let drawingSize = 2;
@@ -27,18 +29,15 @@
 	let songsRecommended = false;
 	let startedFirstRecommendation = false;
 	let songQueue = [];
-	let activeSong = {
-		title: "Watching T.V.",
-		artist: "Magdalena Bay",
-		cover:
-			"https://freight.cargo.site/w/500/h/500/q/75/i/Z1845198611633254597510343300932/Magdalena-Bay_Imaginal-Disk_Artwork-ForWeb.jpg",
-		duration: 5498,
-		url: "https://open.spotify.com/track/3e261e446ac04ff7b3c06e6de081f04c",
-	};
+	let activeSong = {};
+	$: playSong(activeSong);
 
 	let tool = "pen";
-	onMount(() => {
+	let audio;
+	onMount(async () => {
 		ctx = canvas.getContext("2d");
+		accessToken = await getAccessToken();
+		console.log(accessToken);
 	});
 
 	function chooseTool(t) {
@@ -52,17 +51,39 @@
 		}
 	}
 
+	function playSong(song) {
+		if (!songsRecommended) return;
+		if (audio != null) audio.pause();
+		progressBarStore.set(0, {duration: 0});
+		console.log(song);
+		audio = new Audio(song.audioTrack);
+		audio.play();
+		progressBarStore.set(1, { duration: song.duration });
+		setTimeout(() => {
+			nextSong();
+		}, song.duration);
+	}
+	let loading = false;
 	async function getAnthropicRecommendations() {
 		let base = canvas.toDataURL();
+		loading = true;
 		base = base.replace("data:image/png;base64,", "");
 		let results = await imageAnthropic(base);
 		let queue = results.songs;
+		let newQueue = [];
 		for (let i = 0; i < queue.length; i++) {
-			queue[i].cover = "";
-			queue[i].duration = 1000;
-			queue[i].url = "";
+			let data = await getTrackData(queue[i].title, accessToken);
+			console.log(data);
+			queue[i].cover = data.album.images[0].url;
+			queue[i].duration = 30000;
+			queue[i].url = data.external_urls.spotify;
+			queue[i].audioTrack = data.preview_url;
+			if (data.preview_url != null) {
+				newQueue.push(queue[i]);
+			}
 		}
-		return queue;
+		loading = false;
+		return newQueue;
 	}
 
 	async function getAnthropicFirstTime() {
@@ -83,12 +104,23 @@
 			getAnthropicLoop();
 		}, 300000); // wait five minutes before generating more
 	}
+	$: {
+		if(songQueue.length == 1) {
+			getAnthropicRecommendations().then((queue) => {
+				queue.forEach((q) => {
+					songQueue.push(q);
+				});
+				songQueue = [...songQueue];
+			});
+		}
+
+	}
 
 	function nextSong() {
-        if(songQueue.length == 0) {
-            clearQueue();
-            return;
-        }
+		if (songQueue.length == 0) {
+			clearQueue();
+			return;
+		}
 		activeSong = songQueue.shift();
 		songQueue = [...songQueue];
 	}
@@ -168,8 +200,6 @@
 		e.preventDefault();
 	}}
 />
-
-<WebPlayback {client_id} />
 
 <canvas width={size} height={size} id="drawing-canvas" bind:this={canvas}
 ></canvas>
@@ -276,7 +306,10 @@
 				</div>
 			</div>
 			<div class="progress-bar">
-				<div class="progress-inner" style:width={"50%"}></div>
+				<div
+					class="progress-inner"
+					style:width={`${$progressBarStore * 100}%`}
+				></div>
 			</div>
 		</div>
 	{:else}
@@ -285,15 +318,14 @@
 				<div class="album-cover"></div>
 				<div class="song-details" style:width={"100px"}>
 					<div class="song-title gradient-loader">
-                        <div class="progress-bar">
-                        </div></div>
+						<div class="progress-bar"></div>
+					</div>
 					<div class="song-artist gradient-loader">
-                        <div class="progress-bar">
-                        </div></div>
+						<div class="progress-bar"></div>
+					</div>
 				</div>
 			</div>
-			<div class="progress-bar gradient-loader">
-			</div>
+			<div class="progress-bar gradient-loader"></div>
 		</div>
 	{/if}
 	<div class="flex-hor">
@@ -319,6 +351,11 @@
 						</div>
 					</div>
 				{/each}
+				{#if loading}
+				<div class="loader-parent">
+					<IconLoader2 size={60}></IconLoader2>
+				</div>
+				{/if}
 			{:else}
 				<div class="loader-parent">
 					<IconLoader2 size={60}></IconLoader2>
