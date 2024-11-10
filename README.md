@@ -1,3 +1,25 @@
+# SketchTune
+## Elevator Pitch
+Fill your creation
+## Video Demo
+
+## Project Story
+
+### Your inspirations
+
+### What it does
+
+### Tech Stack
+
+### Challenges you ran into
+
+### Accomplishments that you’re proud of
+
+### What you learned
+
+### What's next for The Project
+
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
