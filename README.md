@@ -1,4 +1,4 @@
-# SketchTune - Fill Your Creation
+# SketchTune - Feel Your Creation
 ![Logo](https://github.com/noahpin/sketchtune/blob/main/assets/logo.png?raw=true)
 
 ## Elevator Pitch
