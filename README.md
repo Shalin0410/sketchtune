@@ -2,6 +2,7 @@
 ![Logo](https://github.com/noahpin/sketchtune/blob/main/assets/logo.png?raw=true)
 
 ## Elevator Pitch
+Artists often express their feelings through their craft. Using music to amplify the emotions that fuel their art allows artists to fully immerse into their creations.
 
 ## Video Demo
 [DEMO](https://media.graphassets.com/s9KxU1npTjKeoMrytjoi)
