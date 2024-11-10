@@ -13,7 +13,7 @@
 	import { onMount } from "svelte";
 	import { imageAnthropic, anthropicStatus } from "$lib/anthropic";
 	import { getTrackData, getAccessToken } from "$lib/spotify";
-
+	import noise from "$lib/noise.png";
 	let progressBarStore = tweened(0);
 
 	let accessToken = "";
@@ -215,6 +215,7 @@
 
 <canvas width={size} height={size} id="drawing-canvas" bind:this={canvas}
 ></canvas>
+<img src={noise} class="noise-background" alt=""/>
 {#if songsRecommended}
 	<img class="bg-image" src={activeSong.cover} alt="" />
 {/if}
