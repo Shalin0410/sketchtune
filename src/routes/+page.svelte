@@ -50,19 +50,28 @@
 			ctx.fillStyle = curColor;
 		}
 	}
-
+	let timeout;
 	function playSong(song) {
 		if (!songsRecommended) return;
 		if (audio != null) audio.pause();
+		clearTimeout(timeout);
 		progressBarStore.set(0, {duration: 0});
 		console.log(song);
 		audio = new Audio(song.audioTrack);
 		audio.play();
 		progressBarStore.set(1, { duration: song.duration });
-		setTimeout(() => {
+		timeout = setTimeout(() => {
 			nextSong();
 		}, song.duration);
 	}
+
+	function stopSong() {
+		if (audio != null) audio.pause();
+		clearTimeout(timeout);
+		progressBarStore.set(0, {duration: 0});
+
+	}
+
 	let loading = false;
 	async function getAnthropicRecommendations() {
 		let base = canvas.toDataURL();
@@ -72,7 +81,7 @@
 		let queue = results.songs;
 		let newQueue = [];
 		for (let i = 0; i < queue.length; i++) {
-			let data = await getTrackData(queue[i].title, accessToken);
+			let data = await getTrackData(queue[i].title + "-" + queue[i].artist, accessToken);
 			console.log(data);
 			queue[i].cover = data.album.images[0].url;
 			queue[i].duration = 30000;
@@ -121,6 +130,7 @@
 			clearQueue();
 			return;
 		}
+		stopSong();
 		activeSong = songQueue.shift();
 		songQueue = [...songQueue];
 	}
@@ -129,6 +139,7 @@
 		songsRecommended = false;
 		startedFirstRecommendation = false;
 		getAnthropicFirstTime();
+		stopSong();
 		startedFirstRecommendation = true;
 	}
 
@@ -295,7 +306,7 @@
 		<div class="clickable" on:pointerup={nextSong}>Skip Song</div>
 	</div>
 	{#if songsRecommended}
-		<div class="active-song">
+		<a class="active-song" href={activeSong.url} target="_blank">
 			<div class="top">
 				<div class="album-cover">
 					<img src={activeSong.cover} alt="" />
@@ -311,7 +322,7 @@
 					style:width={`${$progressBarStore * 100}%`}
 				></div>
 			</div>
-		</div>
+		</a>
 	{:else}
 		<div class="active-song">
 			<div class="top">

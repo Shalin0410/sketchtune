@@ -44,7 +44,7 @@ export async function imageAnthropic(imagedata) {
 			{
 				role: "user",
 				content:
-					'List 5 songs that match this vibe in JSON format, with a key "songs" which contains an array, each array element matches the format of a key "artist" which contains the artists name, and the key "title" which contains the songs title:' +
+					'List 10 songs that match this vibe in JSON format, with a key "songs" which contains an array, each array element matches the format of a key "artist" which contains the artists name, and the key "title" which contains the songs title:' +
 					message["content"][0]["text"],
 			},
 		],
