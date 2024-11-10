@@ -14,7 +14,7 @@ Artists often express their feelings through their craft. Using music to amplify
 ## SketchTune
 https://sketchtune.vercel.app/
 
-## Song Recommendations Through DAIN
+## DAIN Implementation: Song Recommendations
 https://github.com/shriya-r/HackSC-DAIN-Implementation
 
 ## Project Story
