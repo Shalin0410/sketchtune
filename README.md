@@ -49,23 +49,11 @@ With the right prompt engineering, our Calude AI model created a diverse playlis
 - Encountered some challenges with the Spotify SDK, which prompted us to discover effective workarounds. Specifically, we learned how to embed the preview URL obtained from the Spotify Search API, enabling a smoother experience when accessing music content.
 
 ### What's next for The Project
+- Develop a more personalized Spotify playlist based on the user's Spotify account, incorporating their listening history prior to using the app while also creating a new history within the app. Additionally, the app will enable artists to adjust the genre, theme, and mood of their Spotify playlists, allowing for more accurate and tailored recommendations.
+- Ensure the Spotify SDK is fully functional, providing users access to all Spotify features and the complete versions of songs.
+- Introduce advanced drawing features that enable artists to better express themselves.
+- Create a responsive user interface that provides a seamless experience across all platforms, including iPad, laptop, and mobile devices.
 
-
-# sv
-
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
 
 ## Developing
 
@@ -87,5 +75,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
