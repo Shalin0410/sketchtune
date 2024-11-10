@@ -7,6 +7,7 @@
 		IconTrash,
 		IconLoader2,
 	} from "@tabler/icons-svelte";
+	import Logo from "$lib/components/Logo.svelte";
 	import { tweened } from "svelte/motion";
 	import { fade } from "svelte/transition";
 	import { onMount } from "svelte";
@@ -380,3 +381,8 @@
 		{/if}
 	</div>
 </div>
+
+<div class="logo">
+	<Logo></Logo>
+	<h1>SketchTune</h1>
+</div>	
